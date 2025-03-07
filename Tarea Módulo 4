@@ -1,0 +1,99 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+    // Clase Empleado
+    static class Empleado {
+
+        // Atributos privados
+        private String nombre;
+        private int edad;
+        private double salario;
+
+        // Constructor
+        public Empleado(String nombre, int edad, double salario) {
+            this.nombre = nombre;
+            this.edad = edad;
+            this.salario = salario;
+        }
+
+        // Métodos de acceso (getter y setter) para el atributo 'nombre'
+        public String getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(String nombre) {
+            this.nombre = nombre;
+        }
+
+        // Métodos de acceso (getter y setter) para el atributo 'edad'
+        public int getEdad() {
+            return edad;
+        }
+
+        public void setEdad(int edad) {
+            this.edad = edad;
+        }
+
+        // Métodos de acceso (getter y setter) para el atributo 'salario'
+        public double getSalario() {
+            return salario;
+        }
+
+        public void setSalario(double salario) {
+            this.salario = salario;
+        }
+
+        // Método para imprimir la información del empleado
+        public void imprimirInformacion() {
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Edad: " + edad);
+            System.out.println("Salario: " + salario);
+        }
+    }
+
+    // Clase GestorEmpleados
+    static class GestorEmpleados {
+
+        // Lista de empleados
+        private List<Empleado> empleados;
+
+        // Constructor
+        public GestorEmpleados() {
+            empleados = new ArrayList<>();
+        }
+
+        // Método para agregar un nuevo empleado a la lista
+        public void agregarEmpleado(Empleado empleado) {
+            empleados.add(empleado);
+        }
+
+        // Método para mostrar todos los empleados
+        public void mostrarEmpleados() {
+            if (empleados.isEmpty()) {
+                System.out.println("No hay empleados registrados.");
+            } else {
+                for (Empleado empleado : empleados) {
+                    System.out.println("--------------------------");
+                    empleado.imprimirInformacion();
+                }
+            }
+        }
+    }
+
+    // Método principal
+    public static void main(String[] args) {
+        // Crear un GestorEmpleados
+        GestorEmpleados gestor = new GestorEmpleados();
+
+        // Agregar algunos empleados de ejemplo
+        gestor.agregarEmpleado(new Empleado("Juan Pérez", 30, 1500.50));
+        gestor.agregarEmpleado(new Empleado("Ana Gómez", 25, 1200.75));
+        gestor.agregarEmpleado(new Empleado("Luis Rodríguez", 35, 2000.00));
+
+        // Mostrar los empleados
+        System.out.println("Lista de empleados registrados:");
+        gestor.mostrarEmpleados();
+    }
+}
