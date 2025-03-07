@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Recursos {
+
+    // Primer método: Retornar un mensaje
+    public String mensajeProgramacion() {
+        return "Programación Orientada a Objetos";
+    }
+
+    // Segundo método: Verificar si la edad es mayor o menor de edad
+    public String verificarEdad(int edad) {
+        if (edad >= 21) {
+            return "Mayor de edad";
+        } else {
+            return "Menor de edad";
+        }
+    }
+
+    // Tercer método: Multiplicar dos enteros
+    public int multiplicar(int num1, int num2) {
+        return num1 * num2;
+    }
+
+    // Cuarto método: Retornar lista de números del 1 al X
+    public List<Integer> listaNumeros(int X) {
+        List<Integer> numeros = new ArrayList<>();
+        for (int i = 1; i <= X; i++) {
+            numeros.add(i);
+        }
+        return numeros;
+    }
+
+    public static void main(String[] args) {
+        // Instanciamos la clase
+        Recursos recursos = new Recursos();
+
+        // Llamamos a los métodos y mostramos los resultados
+        System.out.println(recursos.mensajeProgramacion());  // Primer método
+
+        System.out.println(recursos.verificarEdad(20));  // Segundo método, ejemplo de edad
+
+        System.out.println(recursos.multiplicar(5, 4));  // Tercer método, ejemplo de multiplicación
+
+        System.out.println(recursos.listaNumeros(10));  // Cuarto método, ejemplo de lista
+    }
+}
