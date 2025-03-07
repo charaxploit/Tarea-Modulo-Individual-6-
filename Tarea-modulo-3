@@ -1,0 +1,116 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Libro {
+    private String titulo;
+    private String autor;
+    private int anioPublicacion;
+    private String genero;
+    private boolean disponible;
+
+    public Libro(String titulo, String autor, int anioPublicacion, String genero) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.anioPublicacion = anioPublicacion;
+        this.genero = genero;
+        this.disponible = true;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void prestar() {
+        if (disponible) {
+            disponible = false;
+            System.out.println("El libro ha sido prestado.");
+        } else {
+            System.out.println("El libro no está disponible.");
+        }
+    }
+
+    public void devolver() {
+        disponible = true;
+        System.out.println("El libro ha sido devuelto.");
+    }
+
+    public void mostrarInformacion() {
+        System.out.println("Título: " + titulo);
+        System.out.println("Autor: " + autor);
+        System.out.println("Año de Publicación: " + anioPublicacion);
+        System.out.println("Género: " + genero);
+        System.out.println("Disponible: " + (disponible ? "Sí" : "No"));
+        System.out.println("-----------------------------------");
+    }
+}
+
+class Biblioteca {
+    private ArrayList<Libro> libros;
+
+    public Biblioteca() {
+        libros = new ArrayList<>();
+    }
+
+    public void agregarLibro(Libro libro) {
+        libros.add(libro);
+        System.out.println("Libro agregado con éxito.");
+    }
+
+    public void buscarPorTituloOAutor(String busqueda) {
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equalsIgnoreCase(busqueda) || libro.getAutor().equalsIgnoreCase(busqueda)) {
+                libro.mostrarInformacion();
+            }
+        }
+    }
+
+    public void prestarLibro(String titulo) {
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equalsIgnoreCase(titulo)) {
+                libro.prestar();
+                return;
+            }
+        }
+        System.out.println("Libro no encontrado.");
+    }
+
+    public void devolverLibro(String titulo) {
+        for (Libro libro : libros) {
+            if (libro.getTitulo().equalsIgnoreCase(titulo)) {
+                libro.devolver();
+                return;
+            }
+        }
+        System.out.println("Libro no encontrado.");
+    }
+
+    public void mostrarLibrosDisponibles() {
+        for (Libro libro : libros) {
+            if (libro.isDisponible()) {
+                libro.mostrarInformacion();
+            }
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Biblioteca biblioteca = new Biblioteca();
+        biblioteca.agregarLibro(new Libro("El Quijote", "Miguel de Cervantes", 1605, "Novela"));
+        biblioteca.agregarLibro(new Libro("Cien años de soledad", "Gabriel García Márquez", 1967, "Realismo mágico"));
+
+        biblioteca.mostrarLibrosDisponibles();
+        biblioteca.prestarLibro("El Quijote");
+        biblioteca.mostrarLibrosDisponibles();
+        biblioteca.devolverLibro("El Quijote");
+        biblioteca.mostrarLibrosDisponibles();
+    }
+}
